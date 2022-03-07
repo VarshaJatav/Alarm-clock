@@ -1,10 +1,10 @@
 from plyer import notification
-from time import sleep
+from time import *
 from tkinter import *
 import datetime
 from playsound import playsound
 import winsound
-import threading
+
 
 root=Tk()
 
@@ -63,21 +63,32 @@ min.set("min")
 sec.set("sec")
 
 l=Label(root,text="ALARM CLOCK",font="serif 25 bold",padx=100,fg="#222262").grid(row=0,column=0,columnspan=3)
-l1=Label(root,text="Set an alarm ",font="serif 12 italic",pady=10,bg="#222262",padx=175,fg="white").grid(row=1,column=0,columnspan=3,pady=10)
 
 
-hours1=OptionMenu(root,hour,*hours).grid(row=2,column=0,sticky='e')
-mins1=OptionMenu(root,min,*mins).grid(row=2,column=1)
-secs1=OptionMenu(root,sec,*secs).grid(row=2,column=2,sticky='w')
+
+def time():
+    a=strftime("%H:%M:%S %p")
+    label.config(text=a)
+    label.after(1000,time)
+label=Label(root,fg="#f2b6fa",font="serif 15 bold",padx=7,pady=7,bg="black")
+label.grid(row=1,column=1)
+time()
+
+l1=Label(root,text="Set an alarm ",font="serif 12 italic",pady=10,bg="#222262",padx=175,fg="white").grid(row=2,column=0,columnspan=3,pady=10)
+
+
+hours1=OptionMenu(root,hour,*hours).grid(row=3,column=0,sticky='e')
+mins1=OptionMenu(root,min,*mins).grid(row=3,column=1)
+secs1=OptionMenu(root,sec,*secs).grid(row=3,column=2,sticky='w')
 
 m=Label(root,text="Enter a message: ",font="serif 11 bold")
-m.grid(row=3,column=0)
+m.grid(row=4,column=0,columnspan=2,sticky='w')
 
 msg=Entry(root,width=35)
-msg.grid(row=3,column=1,columnspan=3,pady=10,sticky='w')
+msg.grid(row=4,column=1,columnspan=3,pady=10)
 
 submit=Button(root,text="SET",bg="#222262",command=values,padx=20,font="serif 10 bold",fg="white")
-submit.grid(row=4,column=1,padx=20,pady=20)
+submit.grid(row=5,column=1,padx=20,pady=20)
 # timing()
 # print(current_value.get())
 # print(a)

@@ -25,7 +25,7 @@ def timing():
             message=(msg.get()) ,
             app_icon="clock.ico",
             timeout=7
-            )
+)
             playsound("sound1.mp3")
             return
             
